@@ -69,7 +69,7 @@ When a win is detected the program prints a highlighted winning board and the li
 - `checkLinks(...)` — checks knight-move neighbors and attempts to create a link.
 - `isLinkValid(...)` — determines if a candidate link intersects existing links (permits shared endpoints).
 - `establishLink(...)` — appends a new `Link` to `links_arr` (uses `realloc`).
-- `dfs(...)` — depth-first search over the graph of links to detect a continuous path for the active player.
+- `pathFind(...)` — depth-first search over the graph of links to detect a continuous path for the active player.
 - `gameOver(...)` — iterates possible starting pegs and invokes `dfs` to check for a winner.
 
 ---
