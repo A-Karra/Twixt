@@ -20,7 +20,7 @@ typedef struct Link{
 Link* links_arr = NULL;
 int link_count = 0;
 
-int dfs(int r, int c, int turn, int board[board_size][board_size], int visited[board_size][board_size], int winning_path[board_size][board_size]);
+int pathFind(int r, int c, int turn, int board[board_size][board_size], int visited[board_size][board_size], int winning_path[board_size][board_size]);
 int gameOver(int board[board_size][board_size], int visited[board_size][board_size], int turn);
 void printBoard(int board[board_size][board_size],int hi_row, int hi_col,int turn);
 int isLinkValid(int board[board_size][board_size], int r1, int c1, int r2, int c2);
@@ -45,7 +45,7 @@ void printBanner(){
     printf("\033[0;35m\n\n%s\033[0m", logo);
 }
 
-int dfs(int r, int c, int turn, int board[board_size][board_size], int visited[board_size][board_size], int winning_path[board_size][board_size]) {
+int pathFind(int r, int c, int turn, int board[board_size][board_size], int visited[board_size][board_size], int winning_path[board_size][board_size]) {
 
     if (turn == 0 && r == board_size - 1) {
         winning_path[r][c] = 1; 
@@ -77,7 +77,7 @@ int dfs(int r, int c, int turn, int board[board_size][board_size], int visited[b
 
         if (next_r != -1 && !visited[next_r][next_c]) {
             
-            if (dfs(next_r, next_c, turn, board, visited, winning_path) == 1) {
+            if (pathFind(next_r, next_c, turn, board, visited, winning_path) == 1) {
                 winning_path[r][c] = 1;
                 return 1;
             }
@@ -101,7 +101,7 @@ int gameOver(int board[board_size][board_size], int visited[board_size][board_si
         for (int c = 0; c < board_size; c++) {
             if (board[0][c] == 0 && !visited[0][c]) {
                 
-                if (dfs(0, c, turn, board, visited, winning_path) == 1) {
+                if (pathFind(0, c, turn, board, visited, winning_path) == 1) {
                     
                     printf("\033[1;31m\n\n!!! PLAYER 1 (RED) WINS !!!\n \033[0m");
                     
@@ -115,7 +115,7 @@ int gameOver(int board[board_size][board_size], int visited[board_size][board_si
         for (int r = 0; r < board_size; r++) {
             if (board[r][0] == 1 && !visited[r][0]) {
                 
-                if (dfs(r, 0, turn, board, visited, winning_path) == 1) {
+                if (pathFind(r, 0, turn, board, visited, winning_path) == 1) {
                     printf("\033[1;34m\n\n!!! PLAYER 2 (BLUE) WINS !!!\n \033[0m");
                     
                     printWinningBoard(board, winning_path, turn);
