@@ -10,7 +10,7 @@
   - Two-player gameplay (Player 1: Red, Player 2: Blue).
   - Automatic detection and creation of *links* between same-player pegs at knight-move offsets.
   - Link validity checking (prevents intersecting links except at endpoints).
-  - Win detection via DFS (`pathFind`) across a graph of links.
+  - Win detection across a graph of links.
   - Visual terminal UI with colored output and simple sound effects (in Unix Terminals).
   - Printable representation of the winning path.
 
@@ -82,7 +82,7 @@ When a win is detected, the program prints a highlighted winning board and the l
   - `checkLinks(...)` — checks knight-move neighbors and attempts to create a link.
   - `isLinkValid(...)` — determines if a candidate link intersects existing links (permits shared endpoints).
   - `establishLink(...)` — appends a new `Link` to `links_arr` (uses `realloc`).
-  - `pathFind(...)` — depth-first search over the graph of links to detect a continuous path.
+  - `pathFind(...)` — recursive search over the graph of links to detect a continuous path.
   - `gameOver(...)` — iterates possible starting pegs and invokes `pathFind` to check for a winner.
 
 -----
